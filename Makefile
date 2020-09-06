@@ -19,5 +19,6 @@ init:
 	sudo chmod 775 ~/.config/SpeekABread
 uninstall:
 	rm /usr/bin/SpeekABread
+	rm /usr/bin/Spread
 	rm -r /usr/local/src/seek
 	@echo "Uninstall successful."
