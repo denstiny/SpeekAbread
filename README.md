@@ -1,4 +1,4 @@
-# SpeekAbread
+# SpeekAbread   `因为着急很多都没有做好麻烦谅解`
 
 linux 桌面语音助手，语音识别运行自定义脚本
 
@@ -16,7 +16,7 @@ make init
 ```
 
 语音唤醒需要安装mpg123 
-
+`之后会做好在python内运行的,这样就可以避免安装mpg123，实在时间紧迫抱歉抱歉，很多都用了暴力方法`
 ```shell
 #arch / manjaro 
 sudo pacman -S mpg123
