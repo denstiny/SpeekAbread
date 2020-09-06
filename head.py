@@ -8,7 +8,7 @@ FORMAT = pyaudio.paInt16
 CHUNK = 1024
 CHANNELS = 1
 RATE = 16000
-FILE_TIME = 2
+FILE_TIME = 2 #唤醒语音长度.每次识别两秒钟
 
 
 def record_audio():

@@ -4,7 +4,7 @@
 
 install:
 	cp -f SpeekABread.sh /bin/SpeekABread
-	cp -f SpeekABreadc.sh /bin/Spread
+	cp -f SpeekABreadc.sh /bin/Spread 
 	pip install baidu_aip
 	pip install pyaudio
 	pip install wave
@@ -14,7 +14,9 @@ install:
 	cp -f * /usr/local/src/seek/
 	mkdir /usr/local/src/seek/File_shell
 	@echo "Install successful."
-
+init:
+	ln -s /usr/local/src/seek/File_shell ~/.config/SpeekABread
+	sudo chmod 775 ~/.config/SpeekABread
 uninstall:
 	rm /usr/bin/SpeekABread
 	rm -r /usr/local/src/seek
