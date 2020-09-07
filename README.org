@@ -1,0 +1,60 @@
+* SpeekAbread
+  This is a voice assistant framework *in Linux*, you can create some shell scripts to add features.
+** Dependencies
+   - mpg123 (If you need voice wake-up function)
+     + Arch Distros
+       #+begin_src shell
+         sudo pacman -S mpg123
+       #+end_src
+     + Debian Distros
+       #+begin_src shell
+         sudo apt install mpg123
+       #+end_src
+     + CentOS
+       #+begin_src shell
+         sudo yum install mpg123
+       #+end_src
+   - Git
+   - Make
+
+** Installation
+   #+begin_src shell
+     git clone https://github.com/denstiny/Speekabread
+     cd Speekabread
+     sudo make install
+     make init
+   #+end_src
+
+** Uninstall
+   Go to the project folder, and run the command at below:
+   #+begin_src shell
+     sudo make uninstall
+   #+end_src
+
+** Configuration
+   [[./screenshots/config.png]]
+
+   You can edit ~/usr/local/src/seek/VoiceWake.py~, these are voice wake-up code part.
+
+   And read the comments to edit the source codes.
+
+** Example
+   After we runned the ~make init~ command, we can find SpeekABread folder at ~.config~ folder.
+   
+   The custom scripts will save in it.
+
+   Continue I'll create an easy script to open Netease Cloud Music.
+   #+begin_src shell
+     $ vim 网易云音乐.sh
+   #+end_src
+   Because now only Chinese and simple English can be support, So please try to rename a Chinese name.
+   #+begin_src shell
+     #!/bin/bash
+     netease-cloud-music &
+   #+end_src
+   The code is so easy! And after run the ~Spread~ execute file, You just say ~打开网易云音乐~, and it's opened the Netease Cloud Music!
+   
+   *Note*: ~Spread~ is a command to run speech recognition directly, And ~SpeekABread~ contain the voice wake-up function.
+
+** Last
+   This project is at the test stage now, If you have some question, You can submit an issue or a pull request, Thanks!
