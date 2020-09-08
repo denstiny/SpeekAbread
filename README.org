@@ -1,5 +1,6 @@
 * SpeekAbread
   This is a voice assistant framework *in Linux*, you can create some shell scripts to add features.
+
 ** Dependencies
    - mpg123 (If you need voice wake-up function)
      + Arch Distros
@@ -54,7 +55,7 @@
    #+end_src
    The code is so easy! And after run the ~Spread~ execute file, You just say ~打开网易云音乐~, and it's opened the Netease Cloud Music!
    
-   *Note*: ~Spread~ is a command to run speech recognition directly, And ~SpeekABread~ contain the voice wake-up function.
+   *Note*: ~Spread~ is a command to run speech recognition directly, And ~SpeekAbread~ contain the voice wake-up function.
 
 ** Last
    This project is at the test stage now, If you have some question, You can submit an issue or a pull request, Thanks!
