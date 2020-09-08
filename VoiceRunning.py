@@ -80,7 +80,6 @@ def run_shell(strname):
 
 
 def Application_Aido():
-    #语音合成，语音播报机器人
     #图灵语音机器人接口
     #识别语音 ->转换文字 -> 推送到图灵语音机器人->返回文字内容 -> 语音合成 -> 播报语音
     pass
