@@ -8,17 +8,17 @@ FORMAT = pyaudio.paInt16
 CHUNK = 1024
 CHANNELS = 1
 RATE = 16000
-FILE_TIME = 2 #唤醒语音长度.每次识别两秒钟
+FILE_TIME = 2  #唤醒语音长度.每次识别两秒钟
 
 
 def record_audio():
 
     p = pyaudio.PyAudio()
     stream = p.open(
-        format=FORMAT, #采集位数
-        channels=CHANNELS, #声道
-        rate=RATE, #帧数
-        input=True, #打开输入流
+        format=FORMAT,  #采集位数
+        channels=CHANNELS,  #声道
+        rate=RATE,  #帧数
+        input=True,  #打开输入流
         frames_per_buffer=CHUNK)
     strnames = []
     for i in range(0, int(RATE / CHUNK * FILE_TIME)):
@@ -29,7 +29,7 @@ def record_audio():
     stream.close()
     p.terminate()
 
-    wf = wave.open('/usr/local/src/seek/wave_out.wav', 'wb') # 打开wav文件
+    wf = wave.open('/usr/local/src/seek/wave_out.wav', 'wb')  # 打开wav文件
     wf.setnchannels(CHANNELS)
     wf.setsampwidth(p.get_sample_size(FORMAT))
     wf.setframerate(RATE)
@@ -59,14 +59,14 @@ def list_TEXT():
 
 def IfTest_():
     strch = list_TEXT()
-    list_str = ['老师', '小爱'] #唤醒命令
+    list_str = ['老师', '小爱']  #唤醒命令
     master = difflib.get_close_matches(strch, list_str, 1, cutoff=0.4)
     #print(master)
     if len(master) == 0:
         main()
     else:
         os.system('mpg123 /usr/local/src/seek/head.mp3')
-        os.system('python ' + '/usr/local/src/seek/seek.py')
+        os.system('python ' + '/usr/local/src/seek/VoiceRunning.py')
         main()
 
 
