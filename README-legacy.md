@@ -1,10 +1,6 @@
-# SpeekAbread   `因为着急很多都没有做好麻烦谅解`
+# SpeekAbread
 
 linux 桌面语音助手，语音识别运行自定义脚本
-
-
-
-
 
 ## install
 
@@ -58,11 +54,12 @@ sudo make unistall
 就可以了，他会根据你说的自己搜索这个目录下所匹配的脚本文件
 
 
-
-
-
 如果觉的语音唤醒有点慢的话可以下载sxhkd这个程序，这是一个自定义快捷键程序，他的配置文件在.config/sxhkd/目录下，
 
 ![sxhkd.png](https://i.loli.net/2020/09/06/rVhcKy2uPwCOSXt.png)
 
 `Spread 是直接运行语音识别的命令，大家可以在命令行测试一下`
+
+## 最后
+
+目前此项目还处于测试阶段，如果你遇到了问题，你可以提交一个issue或者pull request，谢谢
