@@ -3,6 +3,7 @@ import pyaudio
 import os
 import wave
 import difflib
+import playsound
 from aip import AipSpeech
 FORMAT = pyaudio.paInt16
 CHUNK = 1024
@@ -65,7 +66,7 @@ def IfTest_():
     if len(master) == 0:
         main()
     else:
-        os.system('mpg123 /usr/local/src/seek/head.mp3')
+        playsound.playsound('/usr/local/src/seek/head.mp3')
         os.system('python ' + '/usr/local/src/seek/VoiceRunning.py')
         main()
 
