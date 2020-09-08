@@ -75,7 +75,7 @@ def run_shell(strname):
 
     strname = "".join(file_name)
     bash_file = '/usr/local/src/seek/File_shell/' + "".join(file_name)
-    playsound.playsound('/usr/local/src/seek/head.mp3')
+    playsound.playsound('/usr/local/src/seek/ok.mp3')
     os.system('bash ' + bash_file)
 
 
