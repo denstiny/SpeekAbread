@@ -17,7 +17,7 @@ install:
 	@echo "Install successful."
 init:
 	ln -s /usr/local/src/seek/File_shell ~/.config/SpeekABread
-	sudo chmod 775 ~/.config/SpeekABread
+	sudo chmod 777 ~/.config/SpeekABread
 uninstall:
 	rm /usr/bin/SpeekABread
 	rm /usr/bin/Spread
