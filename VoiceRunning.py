@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 import pyaudio
 import os
+import playsound
 import wave
 import difflib
 from aip import AipSpeech
@@ -15,10 +16,10 @@ def record_audio():
 
     p = pyaudio.PyAudio()
     stream = p.open(
-        format=FORMAT, #采集位数
-        channels=CHANNELS, #声道
-        rate=RATE, #帧数
-        input=True, #打开输入流
+        format=FORMAT,  #采集位数
+        channels=CHANNELS,  #声道
+        rate=RATE,  #帧数
+        input=True,  #打开输入流
         frames_per_buffer=CHUNK)
     strnames = []
     for i in range(0, int(RATE / CHUNK * FILE_TIME)):
@@ -29,7 +30,7 @@ def record_audio():
     stream.close()
     p.terminate()
 
-    wf = wave.open('/usr/local/src/seek/wave_out.wav', 'wb') # 打开wav文件
+    wf = wave.open('/usr/local/src/seek/wave_out.wav', 'wb')  # 打开wav文件
     wf.setnchannels(CHANNELS)
     wf.setsampwidth(p.get_sample_size(FORMAT))
     wf.setframerate(RATE)
@@ -47,6 +48,7 @@ def baidu_pid():
 
 
 def list_TEXT():
+    #返回语音转换的文字 for str
     client = baidu_pid()
     with open('/usr/local/src/seek/wave_out.wav', 'rb') as f:
         audio_data = f.read()
@@ -64,20 +66,40 @@ def file_shell():
     return filenames
 
 
-def run_shell():
+def run_shell(strname):
     file_sh = file_shell()
     print(file_sh)
-    strname = list_TEXT()
+    #strname = list_TEXT()
     print(strname)
     file_name = difflib.get_close_matches(strname, file_sh, 1, cutoff=0.4)
+
     strname = "".join(file_name)
     bash_file = '/usr/local/src/seek/File_shell/' + "".join(file_name)
+    playsound.playsound('/usr/local/src/seek/head.mp3')
     os.system('bash ' + bash_file)
+
+
+def Application_Aido():
+    #图灵语音机器人接口
+    #识别语音 ->转换文字 -> 推送到图灵语音机器人->返回文字内容 -> 语音合成 -> 播报语音
+    pass
 
 
 def main():
     record_audio()
-    run_shell()
+    strname = list_TEXT()
+    print(strname)
+    Application_List = ['打开只能语音服务']
+    Application_Judge = difflib.get_close_matches(strname,
+                                                  Application_List,
+                                                  1,
+                                                  cutoff=0.5)
+    #优先匹配语音服务 ，无法匹配则启动自定义脚本
+    Application_Str = "".join(Application_Judge)
+    if (Application_Str != ""):
+        Application_Aido()
+    else:
+        run_shell(strname)
 
 
 main()
