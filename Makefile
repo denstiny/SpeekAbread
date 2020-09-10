@@ -8,7 +8,7 @@ install:
 	pip install baidu_aip
 	pip install pyaudio
 	pip install wave
-	pip install palysound
+	#pip install palysound
 	chmod +x /bin/SpeekABread
 	mkdir /usr/local/src/seek
 	chmod 777 /usr/local/src/seek
