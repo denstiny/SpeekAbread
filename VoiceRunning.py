@@ -4,6 +4,8 @@ import os
 import playsound
 import wave
 import difflib
+import json
+import requests
 from aip import AipSpeech
 FORMAT = pyaudio.paInt16
 CHUNK = 1024
@@ -95,14 +97,53 @@ def Application_Aido(strst):
 
 
 def robot_App():
+    #图灵机器人
+    record_audio()
+    str_text = list_TEXT()
+    list_str = ['退出语音服务', '关闭语音服务']
+
+    Jude = difflib.get_close_matches(str_text, list_str, 1, cutoff=0.5)
+    test = "".join(Jude)
+    if (test != ""):
+        Application_Aido("语音服务已经退出,小莫舍不得你")
+        exit()
+
+    TURING_KEY = "93483ecce2404659934b0b868d3143f9"
+    URL = "http://openapi.tuling123.com/openapi/api/v2"
+    HEADERS = {'Content-Type': 'application/json;charset=UTF-8'}
+    data = {
+        "reqType": 0,
+        "perception": {
+            "inputText": {
+                "text": str_text
+            },
+            "selfInfo": {
+                "location": {
+                    "city": "河北",
+                    "street": "辛集"
+                }
+            }
+        },
+        "userInfo": {
+            "apiKey": TURING_KEY,
+            "userId": "starky"
+        }
+    }
+    #data["perception"]["inputText"]["text"] = str_text
+    response = requests.request("post", URL, json=data, headers=HEADERS)
+    response_dict = json.loads(response.text)
+
+    result = response_dict["results"][0]["values"]["text"]
+    print("the AI said: " + result)
+    Application_Aido(result)
+    robot_App()
     pass
 
 
 def main():
     record_audio()
     strname = list_TEXT()
-    print(strname)
-    Application_List = ['打开智能语音服务']
+    Application_List = ['打开语音服务']
     Application_Judge = difflib.get_close_matches(strname,
                                                   Application_List,
                                                   1,
@@ -110,8 +151,8 @@ def main():
     #优先匹配语音服务 ，无法匹配则启动自定义脚本
     Application_Str = "".join(Application_Judge)
     if (Application_Str != ""):
-        Application_Aido("智能语音服务已经打开")
-        Application_Aido(strname)
+        Application_Aido("主人，我在!")
+        robot_App()
     else:
         run_shell(strname)
 
