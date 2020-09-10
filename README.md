@@ -1,61 +1,58 @@
-* SpeekAbread
-  This is a voice assistant framework *in Linux*, you can create some shell scripts to add features.
+# SpeekAbread
 
-** Dependencies
-   - mpg123 (If you need voice wake-up function)
-     + Arch Distros
-       #+begin_src shell
-         sudo pacman -S mpg123
-       #+end_src
-     + Debian Distros
-       #+begin_src shell
-         sudo apt install mpg123
-       #+end_src
-     + CentOS
-       #+begin_src shell
-         sudo yum install mpg123
-       #+end_src
-   - Git
-   - Make
+linux 桌面语音助手，语音识别运行自定义脚本
+## 新增语音机器人
+```你可以说 打开语音服务以启动```
+## install
 
-** Installation
-   #+begin_src shell
-     git clone https://github.com/denstiny/Speekabread
-     cd Speekabread
-     sudo make install
-     make init
-   #+end_src
+```
+git clone https://github.com/denstiny/SpeekAbread.git
+cd SpeekAbread
+sudo make install 
+make init
+```
 
-** Uninstall
-   Go to the project folder, and run the command at below:
-   #+begin_src shell
-     sudo make uninstall
-   #+end_src
+~~语音唤醒需要安装mpg123~~  
+`之后会做好在python内运行的,这样就可以避免安装mpg123，实在时间紧迫抱歉抱歉，很多都用了暴力方法`
 
-** Configuration
-   [[./screenshots/config.png]]
+## Unisntall
 
-   You can edit ~/usr/local/src/seek/VoiceWake.py~, these are voice wake-up code part.
+```Shell
+sudo make unistall
+```
 
-   And read the comments to edit the source codes.
+## Config
 
-** Example
-   After we runned the ~make init~ command, we can find SpeekABread folder at ~.config~ folder.
-   
-   The custom scripts will save in it.
+![](https://i.bmp.ovh/imgs/2020/09/120807f50bf1eadb.png)
 
-   Continue I'll create an easy script to open Netease Cloud Music.
-   #+begin_src shell
-     $ vim 网易云音乐.sh
-   #+end_src
-   Because now only Chinese and simple English can be support, So please try to rename a Chinese name.
-   #+begin_src shell
-     #!/bin/bash
-     netease-cloud-music &
-   #+end_src
-   The code is so easy! And after run the ~Spread~ execute file, You just say ~打开网易云音乐~, and it's opened the Netease Cloud Music!
-   
-   *Note*: ~Spread~ is a command to run speech recognition directly, And ~SpeekAbread~ contain the voice wake-up function.
+你可以编辑/usr/local/src/seek/VoiceWake.py ，这是语音唤醒的源代码，关键地方已经注释可以自行更改
 
-** Last
-   This project is at the test stage now, If you have some question, You can submit an issue or a pull request, Thanks!
+## 实例
+
+在我们运行make init后可以在家目录的config文件夹下找到SpeekABread
+
+我们的脚本可以放在这里面
+
+下面我创建一个 打开网易云的简单脚本
+
+![网易云.png](https://i.loli.net/2020/09/06/XnLQ4KGBdIh5gsc.png)
+
+因为暂时只能识别中文和简单的英文，所以请兄弟们尽量建一个中文名字
+
+![shel.png](https://i.loli.net/2020/09/06/OnQxPvyrXCpFLVK.png)
+
+代码就这么简单，那么运行程序之后，你只需要说：打开网易云音乐
+
+就可以了，他会根据你说的自己搜索这个目录下所匹配的脚本文件
+
+
+如果觉的语音唤醒有点慢的话可以下载sxhkd这个程序，这是一个自定义快捷键程序，他的配置文件在.config/sxhkd/目录下，
+
+![sxhkd.png](https://i.loli.net/2020/09/06/rVhcKy2uPwCOSXt.png)
+
+`Spread 是直接运行语音识别的命令，大家可以在命令行测试一下`
+
+## 最后
+
+目前此项目还处于测试阶段，如果你遇到了问题，你可以提交一个issue或者pull request，谢谢
+
