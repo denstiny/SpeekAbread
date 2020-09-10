@@ -40,7 +40,7 @@ def record_audio():
 
 def baidu_pid():
     URL = "http://vop.baidu.com/server_api"
-    APP_ID = "22546225"
+    APP_ID = "22546225*"
     API_KEY = "PtKOVyDIy8iRPE3041yXUxxa"
     SECRET_KEY = "g6BunbQL2jeEuILzdp1dGeUML5ccPX9S"
     str_key = AipSpeech(APP_ID, API_KEY, SECRET_KEY)
@@ -74,14 +74,23 @@ def run_shell(strname):
     file_name = difflib.get_close_matches(strname, file_sh, 1, cutoff=0.4)
 
     strname = "".join(file_name)
-    bash_file = '/usr/local/src/seek/File_shell/' + "".join(file_name)
-    playsound.playsound('/usr/local/src/seek/head.mp3')
-    os.system('bash ' + bash_file)
+    if (strname != ""):
+        bash_file = '/usr/local/src/seek/File_shell/' + "".join(file_name)
+        Application_Aido(strname)
+        os.system('bash ' + bash_file)
+    else:
+        Application_Aido("未找到服务")
 
 
-def Application_Aido():
-    #图灵语音机器人接口
-    #识别语音 ->转换文字 -> 推送到图灵语音机器人->返回文字内容 -> 语音合成 -> 播报语音
+def Application_Aido(strst):
+    client = baidu_pid()
+    result = client.synthesis(strst, 'zh', 1, {
+        'vol': 3,
+    })
+    client_Aido = open('/usr/local/src/seek/wave_out.mp3', "wb")
+    client_Aido.write(result)
+    client_Aido.close()
+    playsound.playsound('/usr/local/src/seek/wave_out.mp3')
     pass
 
 
@@ -89,7 +98,7 @@ def main():
     record_audio()
     strname = list_TEXT()
     print(strname)
-    Application_List = ['打开只能语音服务']
+    Application_List = ['打开智能语音服务']
     Application_Judge = difflib.get_close_matches(strname,
                                                   Application_List,
                                                   1,
@@ -97,7 +106,8 @@ def main():
     #优先匹配语音服务 ，无法匹配则启动自定义脚本
     Application_Str = "".join(Application_Judge)
     if (Application_Str != ""):
-        Application_Aido()
+        Application_Aido("智能语音服务已经打开")
+        Application_Aido(strname)
     else:
         run_shell(strname)
 

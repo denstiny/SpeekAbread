@@ -40,7 +40,7 @@ def record_audio():
 
 def baidu_pid():
     URL = "http://vop.baidu.com/server_api"
-    APP_ID = "22546225"
+    APP_ID = "22546225*"
     API_KEY = "PtKOVyDIy8iRPE3041yXUxxa"
     SECRET_KEY = "g6BunbQL2jeEuILzdp1dGeUML5ccPX9S"
     str_key = AipSpeech(APP_ID, API_KEY, SECRET_KEY)
