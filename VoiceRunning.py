@@ -105,7 +105,7 @@ def robot_App():
     Jude = difflib.get_close_matches(str_text, list_str, 1, cutoff=0.5)
     test = "".join(Jude)
     if (test != ""):
-        Application_Aido("语音服务已经退出,小莫舍不得你")
+        Application_Aido("语音服务已经退出,小莫在床上等你哦")
         exit()
 
     TURING_KEY = "93483ecce2404659934b0b868d3143f9"
